@@ -41,25 +41,43 @@ struct Point3D (
     pub i32,
 );
 
-// #[derive(Default)]
-// enum Points {
-//     None,
-//     #[default(value={x:1,y:2}, constant, function)]
-//     Point2D {
-//         #[default(value=1)]
-//         x: i32,
-//         #[default(value=2)]
-//         y: i32
-//     },
-//     Point3D(i32,i32,i32),
-// }
+#[derive(Default)]
+enum SimpleEnum {
+    #[default]
+    One,
+    Two,
+}
 
-// impl Points {
+#[derive(Default)]
+enum NamedStructEnum {
+    None,
+    #[default(value=Self::Point2D{x:1,y:2})]
+    Point2D {
+        x: i32,
+        y: i32
+    },
+}
 
-// }
+#[derive(Default)]
+enum UnamedStructEnum {
+    None,
+    #[default(value=Self::Point2D(1,2))]
+    Point2D (
+        i32,
+        i32
+    ),
+}
+
+#[derive(Default)]
+enum GenericEnum<T> {
+    #[default]
+    None,
+    Some(T),
+}
+
 
 #[test]
-fn named_test() {
+fn named_struct_test() {
     assert_eq!(1, Point2D::default().x);
 
     assert_eq!(2, Point2D::default().y);
@@ -87,7 +105,7 @@ fn named_test() {
 
 
 #[test]
-fn unnamed_test() {
+fn unnamed_struct_test() {
     assert_eq!(1, Point3D::default().0);
 
     assert_eq!(2, Point3D::default().1);
@@ -95,4 +113,27 @@ fn unnamed_test() {
 
     assert_eq!(3, Point3D::default().2);
     assert_eq!(3, Point3D::default_2());
+}
+
+
+#[test]
+fn enum_test() {
+    assert!(matches!(SimpleEnum::default(), SimpleEnum::One));
+}
+
+#[test]
+fn generic_enum_test() {
+    assert!(matches!(GenericEnum::<i32>::default(), GenericEnum::None));
+}
+
+
+#[test]
+fn named_enum_test() {
+    assert!(matches!(NamedStructEnum::default(), NamedStructEnum::Point2D { x:1, y:2 }));
+}
+
+
+#[test]
+fn unnamed_enum_test() {
+    assert!(matches!(UnamedStructEnum::default(), UnamedStructEnum::Point2D( 1, 2 )));
 }
