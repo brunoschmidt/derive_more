@@ -236,6 +236,9 @@ pub use derive_more_impl::Constructor;
 #[cfg(feature = "debug")]
 pub use derive_more_impl::Debug;
 
+#[cfg(feature = "def")]
+pub use derive_more_impl::Default;
+
 #[cfg(feature = "deref")]
 pub use derive_more_impl::Deref;
 
@@ -303,6 +306,7 @@ pub use derive_more_impl::Unwrap;
     feature = "as_ref",
     feature = "constructor",
     feature = "debug",
+    feature = "def",
     feature = "deref",
     feature = "deref_mut",
     feature = "display",

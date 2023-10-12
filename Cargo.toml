@@ -51,6 +51,7 @@ add = ["derive_more-impl/add"]
 as_ref = ["derive_more-impl/as_ref"]
 constructor = ["derive_more-impl/constructor"]
 debug = ["derive_more-impl/debug"]
+def = ["derive_more-impl/def"]
 deref = ["derive_more-impl/deref"]
 deref_mut = ["derive_more-impl/deref_mut"]
 display = ["derive_more-impl/display"]
@@ -78,6 +79,7 @@ full = [
     "as_ref",
     "constructor",
     "debug",
+    "def",
     "deref",
     "deref_mut",
     "display",

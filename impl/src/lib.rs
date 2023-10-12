@@ -25,6 +25,8 @@ mod add_like;
 mod r#as;
 #[cfg(feature = "constructor")]
 mod constructor;
+#[cfg(feature = "default")]
+mod default;
 #[cfg(feature = "deref")]
 mod deref;
 #[cfg(feature = "deref_mut")]
@@ -141,6 +143,8 @@ create_derive!("as_ref", r#as::r#ref, AsRef, as_ref_derive, as_ref);
 create_derive!("constructor", constructor, Constructor, constructor_derive);
 
 create_derive!("debug", fmt::debug, Debug, debug_derive, debug);
+
+create_derive!("def", default, Default, default_derive, default, constant, function);
 
 create_derive!("deref", deref, Deref, deref_derive, deref);
 
